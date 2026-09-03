@@ -77,6 +77,39 @@ norm_facets(list(Competing=w9$Competing, Collaborating=w9$Collaborating,
 
 ## Your Type {.unnumbered}
 
+Your **style** below is the one you scored highest on **relative to your cohort** — your best
+percentile of the five, not your highest raw mean. Look up your password, then find that style
+in the table underneath to see when it serves you and when it costs you.
+
+```{r}
+#| label: ch12-conflict-style-type-compute
+#| include: false
+# Strongest style = highest percentile of the five. Percentiles rather than raw means
+# because the five styles sit at very different heights in any sample - Collaborating
+# runs high and Competing low almost everywhere - so the largest raw score would name
+# the same style for most of the cohort and say nothing about the individual.
+# Rounded to match the percentages printed in the table above. Ties are joined, not
+# broken: three mentors here tie across two styles.
+pc9 <- sapply(w9[, -1], function(x) round(dplyr::percent_rank(x) * 100))
+style9 <- apply(pc9, 1, function(r) paste(colnames(pc9)[r == max(r)], collapse = " & "))
+```
+
+```{r}
+#| label: ch12-conflict-style-type-table
+#| echo: false
+score_table(w9$Password, list(),
+  "12. Conflict Style: your strongest style, relative to the cohort",
+  extra = list(Style = style9))
+```
+
+::: {.callout-note}
+## This is your strongest style, not your only one
+The DUTCH gives you a **profile across all five**, and the scores above show you use every one
+of them to some degree. The style named here is simply the one that stands out most against
+your peers. It is not a personality label, and a different situation may well call for a
+different mode.
+:::
+
 Every mode has benefits and costs. The skill is knowing when to use each one, not defaulting
 to a favorite.
 
