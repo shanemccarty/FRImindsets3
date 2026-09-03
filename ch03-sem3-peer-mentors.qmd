@@ -1,0 +1,111 @@
+---
+editor:
+  markdown:
+    wrap: 72
+---
+
+# 3. Sem 3 Peer Mentors {.unnumbered}
+
+```{r}
+#| include: false
+source("_setup.R")
+```
+
+*Who is in this cohort, and what does my stream do?*
+
+## You are the mentor now {.unnumbered}
+
+You are now a peer mentor for the FRI Semester 3 course, and the thing you are
+developing is no longer your own research skill but your ability to grow other
+people's. Those are genuinely different skills. Being good at research does not
+automatically make someone good at mentoring, and the gap between the two is
+where this guide lives.
+
+The measures in the chapters ahead are not tests. Nobody is scored as a better
+or worse mentor. Each one names a style or an orientation you already have,
+shows you where it sits relative to the rest of your cohort, and asks you to
+decide whether it is serving your mentees this week.
+
+## This cohort {.unnumbered}
+
+There are **25 peer mentors** in the Semester 3 cohort, across three streams.
+
+```{r}
+#| label: ch03-cohort-table
+#| echo: false
+dat |>
+  count(Stream = STREAM, name = "Peer mentors") |>
+  kbl(caption = "Semester 3 peer mentors by stream") |>
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = FALSE)
+```
+
+## What this cohort wants {.unnumbered}
+
+The first question on the survey asked how important it is to you to become a
+**more effective peer mentor** by the end of this semester. This is the one
+score in the guide where the answer is not a style but a commitment, and it is
+worth seeing what your cohort said.
+
+```{r}
+#| label: ch03-effective-plot
+#| echo: false
+#| fig-width: 7
+#| fig-height: 4
+# A five-point single item, so this is a bar chart over the response options -
+# not norm_facets(), whose histogram bins would straddle the response values.
+eff <- tibble::tibble(
+  Importance = factor(1:5, levels = 1:5,
+    labels = c("Not\nimportant", "Slightly", "Moderately", "Important",
+               "Very\nimportant")),
+  n = as.integer(table(factor(dat$EFFECTIVE, levels = 1:5))))
+
+ggplot(eff, aes(Importance, n)) +
+  geom_col(fill = green, width = 0.62) +
+  geom_text(aes(label = n), vjust = -0.55, size = 4, color = neutral_dark) +
+  scale_y_continuous(breaks = seq(0, 14, 2), expand = expansion(mult = c(0, 0.12))) +
+  labs(x = "How important is becoming a more effective peer mentor?",
+       y = "Peer mentors") +
+  theme_minimal(base_size = 12) +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.title.x = element_text(color = green, face = "bold"))
+```
+
+Almost everyone rated it **Important** or **Very important**. That is a real
+starting condition: the room already wants this.
+
+::: callout-note
+## Why this one has no bands
+
+Every other chapter shades the distribution into Low / Mid / High thirds. This
+one does not. Read this figure as a group portrait, not as a personal score.
+:::
+
+## Your stream {.unnumbered}
+
+The mindsets in this guide are the same for everyone. Good mentoring looks much
+the same whether your team is running assays, analyzing health data, or building
+visualizations — the chapters ahead apply to all three streams without
+modification.
+
+**What differs is how your stream uses the guide.** Streams set their own pace
+through the chapters, hold their peer mentor meetings at different times, and
+build the weekly reflection into their course in different ways. Your research
+educator decides which chapter you are working on in a given week, how the
+mindset is discussed when you meet, and where your journal entries go.
+
+Your research educator will tell you which chapter to read each week, when your
+peer mentor meetings happen, and how to submit your journal entries.
+
+**Ask your research educator for details.**
+
+## Reflect and Plan
+
+::: {.callout-warning}
+## Journal
+- **Purpose:** What made a peer mentor helpful to you when you were the
+  first-year student? Name something specific they did.
+- **Goal:** You rated how important it is to become a more effective mentor.
+  What would "more effective" actually look like for you by December?
+:::

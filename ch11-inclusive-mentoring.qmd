@@ -1,0 +1,83 @@
+# 11. Inclusive Mentoring {.unnumbered}
+
+```{r}
+#| include: false
+source("_setup.R")
+```
+
+*Is my mentoring inclusive?*
+
+## The Mindset(s) {.unnumbered}
+
+Inclusive mentoring has two facets: what you **believe** matters, and what you actually **do**.
+A mentor can value cultural awareness highly yet rarely act on it, so the two are measured
+separately.
+
+- [**Attitudes**]{style="color:#007F85;"}: how much you value being aware of race and ethnicity
+  in your research mentoring.
+  - *Survey item:* "It is important for mentors and mentees to discuss how race/ethnicity impacts the mentee's research experience."
+- [**Behaviors**]{style="color:#C0522A;"}: how much you actually enact culturally aware
+  mentoring.
+  - *Survey item:* "I create opportunities for my mentees to bring up issues of race/ethnicity as they arise."
+
+**Polarity:** Colorblind ↔ Culturally aware.
+
+**Measure:** Cultural Diversity Awareness for Race/Ethnicity (CDA-R/E), mentor self-form,
+adapted (Byars-Winston & Butz, 2021). Six items: three **Attitudes** (A2, A4, A5) and three
+**Behaviors** (B1, B2, B3). This guide uses **two versions**:
+
+- **Importance** (start of semester, pretest): *"As a mentor, how important is each of the
+  following to you?"* rated 1 = Not at all important to 6 = Extremely important.
+- **Current** (midpoint): *"How much do you agree with each statement about your mentoring
+  right now?"* rated 1 = Strongly disagree to 6 = Strongly agree.
+
+Comparing the two shows the gap between what you value and what you currently do. The scores
+below are from the pretest (**Importance**) version.
+
+## Find Your Score {.unnumbered}
+
+Use your password to find your score(s).
+
+```{r}
+#| label: ch11-inclusive-mentoring-compute
+#| include: false
+w8 <- dat |> transmute(Password = PASSWORD,
+  Attitudes = rowMeans(across(c(Attitudes1, Attitudes2, Attitudes3))),
+  Behaviors = rowMeans(across(c(Behaviors1, Behaviors2, Behaviors3))))
+```
+
+```{r}
+#| label: ch11-inclusive-mentoring-table
+#| echo: false
+score_table(w8$Password, list(Attitudes=w8$Attitudes, Behaviors=w8$Behaviors),
+  "11. Inclusive Mentoring: your CDA-R/E composites (1–6, Importance version)")
+```
+
+## Locate Your Score {.unnumbered}
+
+Locate your score(s) relative to other peer mentors!
+
+```{r}
+#| label: ch11-inclusive-mentoring-plot
+#| echo: false
+#| fig-width: 9
+#| fig-height: 3.8
+norm_facets(list(Attitudes=w8$Attitudes, Behaviors=w8$Behaviors),
+  xlab="Importance (1–6)", scale = c(1, 6))
+```
+
+::: {.callout-important}
+## About this measure
+The six items are drawn from the validated CDA-R/E scale (Byars-Winston & Butz, 2021), but the
+selection of items and the **Importance** framing are **adapted for this course**. The
+behavior items are also present-tensed for a mid-semester self-report (the original is
+retrospective). Re-check reliability before reporting results beyond this guide.
+:::
+
+## Reflect and Plan
+
+::: {.callout-warning}
+## Journal
+- **Score:** How does reflecting on your score help you think about who you are as a mentor?
+- **Behavior:** To be the best mentor you can be, what is one new thing you will try to do this week for mentees and/or your team?
+:::

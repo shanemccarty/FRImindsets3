@@ -1,0 +1,68 @@
+# 6. Leadership Focus {.unnumbered}
+
+```{r}
+#| include: false
+source("_setup.R")
+```
+
+*Is my leadership style to promote or prevent for the team?*
+
+## The Mindset(s) {.unnumbered}
+
+The same regulatory focus from Chapter 5, now applied to how you lead. Each pole covers the same
+three leadership functions: goal framing, problem solving, and error management. (Feedback is
+its own chapter: **Chapter 7, Feedback Orientation**.)
+
+- [**Promotion Leadership**]{style="color:#5A71A8;"}: frames goals around gains, builds on
+  what works, and encourages useful risks.
+  - *Survey item:* "I plan to motivate my team by framing our goals around the gains and growth we can achieve."
+- [**Prevention Leadership**]{style="color:#453A98;"}: frames goals around setbacks to
+  avoid, fixes what is going wrong, and emphasizes accuracy.
+  - *Survey item:* "I plan to motivate my team by framing our goals around the problems and setbacks we need to avoid."
+
+**Polarity:** Promotion ↔ Prevention (team leadership).
+
+**Measure:** Promotion/Prevention Team Leadership Scale (adapted from regulatory focus
+theory). Six items rated 1–7, three per subscale.
+
+## Find Your Score {.unnumbered}
+
+Use your password to find your score(s).
+
+```{r}
+#| label: ch06-leadership-focus-compute
+#| include: false
+w3 <- dat |> transmute(Password = PASSWORD,
+  `Promotion Leadership`  = rowMeans(across(c(Lead_Promo1, Lead_Promo2, Lead_Promo3))),
+  `Prevention Leadership` = rowMeans(across(c(Lead_Prev1, Lead_Prev2, Lead_Prev3))))
+```
+
+```{r}
+#| label: ch06-leadership-focus-table
+#| echo: false
+score_table(w3$Password, list(`Promotion Leadership`=w3$`Promotion Leadership`,
+  `Prevention Leadership`=w3$`Prevention Leadership`),
+  "6. Leadership Focus: your composite scores (1–7)")
+```
+
+## Locate Your Score {.unnumbered}
+
+Locate your score(s) relative to other peer mentors!
+
+```{r}
+#| label: ch06-leadership-focus-plot
+#| echo: false
+#| fig-width: 9
+#| fig-height: 3.8
+norm_facets(list(`Promotion Leadership`=w3$`Promotion Leadership`,
+  `Prevention Leadership`=w3$`Prevention Leadership`), xlab="Score (1–7)",
+  scale = c(1, 7))
+```
+
+## Reflect and Plan
+
+::: {.callout-warning}
+## Journal
+- **Score:** How does reflecting on your score help you think about who you are as a mentor?
+- **Behavior:** To be the best mentor you can be, what is one new thing you will try to do this week for mentees and/or your team?
+:::

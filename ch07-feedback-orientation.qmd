@@ -1,0 +1,94 @@
+# 7. Feedback Orientation {.unnumbered}
+
+```{r}
+#| include: false
+source("_setup.R")
+```
+
+*Is my feedback preference supportive or corrective?*
+
+## The Mindset(s) {.unnumbered}
+
+Feedback orientation is a single **bipolar** dimension. It is not about how much feedback you
+give, but about which way you lean when you give it. Neither end is better; mentees need both,
+and the useful skill is knowing which one a moment calls for.
+
+- [**Corrective**]{style="color:#985BA3;"} (the low end): feedback aimed at what needs fixing,
+  the gap between the work and the standard.
+  - *Survey item:* "I focus on mistakes to correct" (vs. "I focus on strengths to build on").
+- [**Supportive**]{style="color:#477F2B;"} (the high end): feedback aimed at affirming and
+  encouraging, building on what is already working.
+  - *Survey item:* "My instinct is to affirm and encourage" (vs. "My instinct is to close the gap to the standard").
+
+**Polarity:** Corrective ↔ Supportive.
+
+**Measure:** Feedback Orientation, bipolar (author-created for this course). Three
+semantic-differential items rated 1 to 7, where **1 = fully corrective**, **4 = balanced**, and
+**7 = fully supportive**. Your score is the mean of the three items, **re-centred so that 0 is
+balanced**: below 0 leans corrective, above 0 leans supportive, and the score runs from −3 to
++3.
+
+::: {.callout-important}
+A negative score below is not a "negative": it just means you favored
+[**corrective**]{style="color:#985BA3;"} feedback more. (Above 0 means you favored
+[**supportive**]{style="color:#477F2B;"} feedback; 0 is balanced.) Neither end is better than
+the other.
+:::
+
+## Find Your Score {.unnumbered}
+
+Use your password to find your score(s).
+
+```{r}
+#| label: ch07-feedback-orientation-compute
+#| include: false
+# Collected on a 1-7 bipolar scale where 4 = Balanced. Subtracting 4 re-centres it
+# on zero so the sign carries the meaning: negative = corrective, positive = supportive.
+w4 <- dat |> transmute(Password = PASSWORD,
+  `Feedback orientation` = rowMeans(across(c(Feedback1, Feedback2, Feedback3))) - 4)
+# cutoffs sit between the discrete 1/3-steps a 3-item mean can take, so the
+# label always matches the rounded score shown in the table.
+lean4 <- factor(dplyr::case_when(
+  w4$`Feedback orientation` >  0.5 ~ "Supportive-leaning",
+  w4$`Feedback orientation` < -0.5 ~ "Corrective-leaning",
+  TRUE                             ~ "Balanced"),
+  levels = c("Corrective-leaning", "Balanced", "Supportive-leaning"))
+```
+
+```{r}
+#| label: ch07-feedback-orientation-table
+#| echo: false
+score_table(w4$Password, list(`Feedback orientation`=w4$`Feedback orientation`),
+  "7. Feedback Orientation: your bipolar score (−3 = corrective … +3 = supportive)",
+  extra = list(Lean = lean4))
+```
+
+## Locate Your Score {.unnumbered}
+
+Locate your score(s) relative to other peer mentors!
+
+```{r}
+#| label: ch07-feedback-orientation-plot
+#| echo: false
+#| fig-width: 8
+#| fig-height: 4
+norm_facets(list(`Feedback orientation`=w4$`Feedback orientation`),
+  xlab="Feedback orientation", scale = c(-3, 3),
+  labels = c("−3\nCorrective","−2","−1","0\nBalanced","1","2","3\nSupportive"))
+```
+
+::: {.callout-important}
+## About this measure
+No validated self-report scale exists for this bipolar dimension, so these three items were
+**written for this course**. They are grounded in the supportive/corrective feedback
+distinction but are not a published instrument. Pilot and check reliability before reporting
+results anywhere beyond this guide.
+:::
+
+## Reflect and Plan
+
+::: {.callout-warning}
+## Journal
+- **Score:** How does reflecting on your score help you think about who you are as a mentor?
+- **Behavior:** To be the best mentor you can be, what is one new thing you will try to do this week for mentees and/or your team?
+:::

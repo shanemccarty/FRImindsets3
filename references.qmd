@@ -1,0 +1,117 @@
+# Measures & References {.unnumbered}
+
+All measures are drawn from existing, validated instruments, with one documented exception:
+the Chapter 7 Feedback Orientation items are author-created for this course (no validated
+bipolar supportive/corrective scale exists). See the companion strategy document (*FRI PM
+Mindsets Strategy*) for the full item bank, scoring, and access status.
+
+## Measure by chapter
+
+| Chapter | Mindset | Instrument · subscale | Access |
+|---|---|---|---|
+| 3 | Sem 3 Peer Mentors | Single-item commitment to becoming a more effective mentor (author-created) | Author-created |
+| 4 | Mentoring Style | Mentoring Style Values Inventory (adapted from Ertesvåg, 2011); Mentoring Competency Assessment (Fleming et al., 2013) | Adapted · Free |
+| 5 | Motivational Style | Mentoring Regulatory Focus 2×2 (adapted; Higgins, 1997; Lockwood et al., 2002) | Adapted |
+| 6 | Leadership Focus | Promotion/Prevention Team Leadership Scale (adapted) | Adapted |
+| 7 | Feedback Orientation | Feedback Orientation, bipolar (author-created for this course) | Author-created |
+| 8 | People Orientation | 'Kind of Person' Implicit Theory Scale (Dweck, 1999) | Free |
+| 9 | Leadership Role | Mentoring Leadership Functions inventory (adapted from Morgeson, DeRue & Karam, 2010) | Adapted |
+| 10 | Communication Style | Nonviolent Communication Behaviors Scale (Cheung et al., 2022) | © |
+| 11 | Inclusive Mentoring | Culturally Aware Mentorship Self-Efficacy (Byars-Winston & Butz, 2021) | Free *(proposed)* |
+| 12 | Conflict Style | Dutch Test for Conflict Handling (DUTCH), short form (De Dreu et al., 2001) | Free (© article) |
+| 13 | Self-Awareness | Eurich four-type framework — self-classification, no measure (Eurich, 2017, 2018) | Free (framework) |
+
+**Access legend.** Free = freely available for research and education. © = copyrighted, items
+typically in the source article, free for non-commercial research with citation (verify terms).
+Licensed = commercially licensed, purchase or permission required. Adapted = adapted from a
+copyrighted instrument (cite the original).
+
+::: {.callout-note}
+## Not measured this semester
+The pretest does not include **Goal Preference**, **Facilitator**, or **Facilitator
+Reflection**, so those mindsets are not part of this guide. The Five-Dimensional Curiosity
+Scale (Kashdan et al., 2020), the Mentor Self-Efficacy Scale, and the Paradox Mindset Scale
+(Miron-Spektor et al., 2018) are likewise parked. Their item banks are retained in the strategy
+document in case a chapter is reassigned.
+:::
+
+::: {.callout-important}
+## How two scores are scaled
+- **Feedback Orientation** is collected on a 1–7 bipolar scale where 4 = Balanced. Chapter 7
+  subtracts 4 to re-centre it, so your reported score runs from −3 to +3 with 0 as balanced.
+- **Leadership Role** counts *"evaluate the performance of the team"* as a **Task** function,
+  giving five Task and five Relational functions. Because the ten share a fixed 50-point budget,
+  the two totals are complements of each other.
+:::
+
+## References
+
+Brown, G. T. L. (2006). Teachers' conceptions of assessment: Validation of an abridged
+instrument. *Psychological Reports, 99*, 166–170.
+
+Byars-Winston, A., & Butz, A. R. (2021). Measuring research mentors' cultural diversity
+awareness for race/ethnicity in STEM. *CBE Life Sciences Education, 20*(2).
+
+Cheung, C. T. Y., et al. (2022). Reliability and validity of a novel measure of nonviolent
+communication behaviors. *Research on Social Work Practice.*
+
+De Dreu, C. K. W., Evers, A., Beersma, B., Kluwer, E. S., & Nauta, A. (2001). A theory-based
+measure of conflict management strategies in the workplace. *Journal of Organizational
+Behavior, 22*(6), 645–668.
+
+Dweck, C. S. (1999). *Self-theories: Their role in motivation, personality, and development.*
+Psychology Press.
+
+Ertesvåg, S. K. (2011). Measuring authoritative teaching. *Teaching and Teacher Education, 27*.
+
+Eurich, T. (2017). *Insight: Why we're not as self-aware as we think, and how seeing
+ourselves clearly helps us succeed at work and in life.* Crown Business.
+
+Eurich, T. (2018, January 4). What self-awareness really is (and how to cultivate it).
+*Harvard Business Review.*
+
+Fleming, M., et al. (2013). The Mentoring Competency Assessment. *Academic Medicine, 88*(7),
+1002–1008.
+
+Grant, A. M., Franklin, J., & Langford, P. (2002). The Self-Reflection and Insight Scale.
+*Social Behavior and Personality, 30*(8), 821–836.
+
+Higgins, E. T. (1997). Beyond pleasure and pain. *American Psychologist, 52*(12), 1280–1300.
+
+Hiller, N. J., Day, D. V., & Vance, R. J. (2006). Collective enactment of leadership roles.
+*The Leadership Quarterly, 17*, 387–397.
+
+Lockwood, P., Jordan, C. H., & Kunda, Z. (2002). Motivation by positive or negative role
+models. *Journal of Personality and Social Psychology, 83*(4), 854–864.
+
+Morgeson, F. P., DeRue, D. S., & Karam, E. P. (2010). Leadership in teams: A functional
+approach to understanding leadership structures and processes. *Journal of Management,
+36*(1), 5–39.
+
+Rahim, M. A. (1983). *Rahim Organizational Conflict Inventory-II.* (Commercially licensed.)
+
+::: {.callout-important}
+Scores in this guide use **real pretest data** from the 25 peer mentors who completed the
+Qualtrics survey. Post-semester results are still to come.
+:::
+
+## Acknowledgments {.unnumbered}
+
+Contributions are described using the [CRediT taxonomy](https://credit.niso.org).
+
+**Conceptualization.** This FRI Peer Mentor Mindsets Guide was conceptualized by Shane McCarty,
+Caitlin Light, and Megan Fegley.
+
+**Software.** This guide was developed through a combination of manual coding in R
+(RStudio 2026.08.2+200) and AI-assisted coding (Claude for Mac, Opus 5, Version 1.44121.4).
+
+**Formal Analysis and Visualization.** Select composites, plots, and basic analyses were
+conducted in RStudio by Zihan Hei and Shane McCarty.
+
+**Writing.** Shane McCarty, and AI-assisted writing in Claude.
+
+**Data Collection.** Shane McCarty, Joe Panzik, Patricia Wolfe.
+
+**Resources.** First-year Research Immersion Program.
+
+**Supervision.** Megan Fegley.

@@ -1,0 +1,50 @@
+project:
+  type: book
+  output-dir: docs
+  render:
+    - index.qmd
+    - ch02-guide-for-you.qmd
+    - ch03-sem3-peer-mentors.qmd
+    - ch04-mentoring-style.qmd
+    - ch05-motivational-style.qmd
+    - ch06-leadership-focus.qmd
+    - ch07-feedback-orientation.qmd
+    - ch08-people-orientation.qmd
+    - ch09-leadership-role.qmd
+    - ch10-communication-style.qmd
+    - ch11-inclusive-mentoring.qmd
+    - ch12-conflict-style.qmd
+    - ch13-self-awareness.qmd
+    - references.qmd
+
+book:
+  title: "FRI Semester 3 Peer Mentor Mindsets Guide"
+  author:
+    - "Shane McCarty"
+    - "Caitlin Light"
+    - "Zihan Hei"
+    - "Joe Panzik"
+    - "Patricia Wolfe"
+    - "Megan Fegley"
+  date: today
+  chapters:
+    - index.qmd
+    - ch02-guide-for-you.qmd
+    - ch03-sem3-peer-mentors.qmd
+    - ch04-mentoring-style.qmd
+    - ch05-motivational-style.qmd
+    - ch06-leadership-focus.qmd
+    - ch07-feedback-orientation.qmd
+    - ch08-people-orientation.qmd
+    - ch09-leadership-role.qmd
+    - ch10-communication-style.qmd
+    - ch11-inclusive-mentoring.qmd
+    - ch12-conflict-style.qmd
+    - ch13-self-awareness.qmd
+    - references.qmd
+
+format:
+  html:
+    theme: [cosmo, theme.scss]
+    toc: true
+    number-sections: false

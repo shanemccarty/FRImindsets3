@@ -1,0 +1,120 @@
+# 5. Motivational Style {.unnumbered}
+
+```{r}
+#| include: false
+source("_setup.R")
+```
+
+*Is my motivational approach to promote or prevent for my mentees' academics or social connection?*
+
+## The Mindset(s) {.unnumbered}
+
+Regulatory focus crosses two dimensions. The **focus** is what you are steering toward, and
+the **goal** is what you are hoping to attain.
+
+- [**Promotion**]{style="color:#5A71A8;"}: oriented toward gains, growth, and what your
+  mentees could become.
+  - *Survey item:* "Helping my mentees reach their full potential as researchers."
+- [**Prevention**]{style="color:#453A98;"}: oriented toward safety, avoiding mistakes, and
+  what could go wrong.
+  - *Survey item:* "Preventing problems from derailing my mentees' research."
+- **Academic referent**: your team's research project.
+  - *Survey item:* "Helping my mentees make progress and grow in their research project."
+- **Social referent**: belonging to the team and connections on campus.
+  - *Survey item:* "Helping my mentees build a sense of belonging and connection on the team."
+
+**Polarity:** Promotion ↔ Prevention × Academic ↔ Social.
+
+**Measure:** Mentoring Regulatory Focus Scale, 2×2 (adapted; Higgins, 1997; Lockwood,
+Jordan & Kunda, 2002). The stem is *"As a peer mentor, how much will you emphasize each?"* and
+you rate twelve items, three per cell, on a 1–7 emphasis scale (1 = No emphasis, 4 = Moderate,
+7 = Very strong emphasis). Focus and referent are scored separately.
+
+## Find Your Score {.unnumbered}
+
+Use your password to find your score(s).
+
+```{r}
+#| label: ch05-motivational-style-compute
+#| include: false
+w2 <- dat |> transmute(Password = PASSWORD,
+  `Promotion × Academic`  = rowMeans(across(c(Pro_Acade1, Pro_Acade2, Pro_Acade3))),
+  `Promotion × Social`    = rowMeans(across(c(Pro_Social1, Pro_Social2, Pro_Social3))),
+  `Prevention × Academic` = rowMeans(across(c(Prev_Acade1, Prev_Acade2, Prev_Acade3))),
+  `Prevention × Social`   = rowMeans(across(c(Prev_Social1, Prev_Social2, Prev_Social3))))
+```
+
+```{r}
+#| label: ch05-motivational-style-table
+#| echo: false
+score_table(w2$Password, list(
+  `Promotion × Academic`=w2$`Promotion × Academic`, `Promotion × Social`=w2$`Promotion × Social`,
+  `Prevention × Academic`=w2$`Prevention × Academic`, `Prevention × Social`=w2$`Prevention × Social`),
+  "5. Motivational Style: your 2×2 cell composites (1–7)",
+  extra = list(
+    `Promotion aim`  = goal_lean(w2$`Promotion × Academic`,  w2$`Promotion × Social`),
+    `Prevention aim` = goal_lean(w2$`Prevention × Academic`, w2$`Prevention × Social`)))
+```
+
+## Locate Your Score {.unnumbered}
+
+Locate your score(s) relative to other peer mentors!
+
+```{r}
+#| label: ch05-motivational-style-plot
+#| echo: false
+#| fig-width: 9
+#| fig-height: 5
+norm_facets(list(
+  `Promotion × Academic`=w2$`Promotion × Academic`, `Promotion × Social`=w2$`Promotion × Social`,
+  `Prevention × Academic`=w2$`Prevention × Academic`, `Prevention × Social`=w2$`Prevention × Social`),
+  xlab="Emphasis (1–7)", scale = c(1, 7))
+```
+
+## Your Motivational Style {.unnumbered}
+
+Each dot is one peer mentor. These two plots split your motivation into **how strongly** you
+hold a focus and **what you aim it at**.
+
+The **horizontal axis** is how strongly you hold that focus overall. The dashed line is the
+**class median**, so "high" and "low" mean *relative to your classmates*, not relative to the
+1–7 scale. The **vertical axis** is a difference score: how much more you aim that focus at
+**academic** goals (your team's research project) than at **social** goals (belonging and
+connection). Here the solid line at zero is a real anchor, not a class comparison. Above it
+you lean academic, below it you lean social, and on it you weight the two equally. Find your
+**Promotion aim** and **Prevention aim** in the table above.
+
+```{r}
+#| label: ch05-motivational-style-promotion
+#| echo: false
+#| fig-width: 7
+#| fig-height: 4.6
+focus_plot(w2$`Promotion × Academic`, w2$`Promotion × Social`,
+           "Promotion", construct_color("Promotion", "base"), scale = c(1, 7))
+```
+
+```{r}
+#| label: ch05-motivational-style-prevention
+#| echo: false
+#| fig-width: 7
+#| fig-height: 4.6
+focus_plot(w2$`Prevention × Academic`, w2$`Prevention × Social`,
+           "Prevention", construct_color("Prevention", "base"), scale = c(1, 7))
+```
+
+::: {.callout-note}
+## Your style is a snapshot, not a fixed type
+The median split on the horizontal axis means roughly half the class sits on each side *by
+construction*. If you sit close to either line, small changes in a few answers would move you.
+The two plots are also independent: a strong promotion focus does not imply a weak prevention
+focus, and you can aim them at different goals. Read your position as a description of your
+current balance, not a fixed type.
+:::
+
+## Reflect and Plan
+
+::: {.callout-warning}
+## Journal
+- **Score:** How does reflecting on your score help you think about who you are as a mentor?
+- **Behavior:** To be the best mentor you can be, what is one new thing you will try to do this week for mentees and/or your team?
+:::

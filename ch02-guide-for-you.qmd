@@ -1,0 +1,66 @@
+---
+editor:
+  markdown:
+    wrap: 72
+---
+
+# 2. A Guide for You {.unnumbered}
+
+*How do I use this guide?*
+
+This guide is your companion for the rest of the semester. Each week, you will
+learn about a new mindset related to peer mentoring, review your score on that
+mindset, and discuss how to answer the big question of the week. Each chapter
+has the distribution for that week's measure and a **password lookup table**
+where you can find your own score(s).
+
+## How to find your scores {.unnumbered}
+
+At the end of the anonymous survey you created a **password**. Each chapter
+contains a table where you look up your password to find your composite scores
+for that week's measure.
+
+The tables show only the **last two letters and the four digits** of your
+password. So if you created `BILLS8722`, look for **`LS8722`**. Dropping the
+first three letters keeps the tables from identifying anyone, since passwords
+often start with a name or initials.
+
+The lookup tables are **grouped by stream**, and alphabetised within each
+stream.
+
+::: callout-note
+## Save your password
+
+Your password is the key to your individual scores all semester. Keep it in
+your phone notes. To change it, contact the course instructor.
+:::
+
+## How to interpret your scores {.unnumbered}
+
+Each measure produces a **composite score** from your responses to a set of
+related items (usually their average; for the two point-budget measures, their
+total).
+
+1.  **Find your score** in the password lookup table.
+2.  **Locate it** on the class distribution. The dashed lines mark the **33rd
+    and 67th percentiles**, and the shaded bands show the **Low / Mid / High**
+    thirds of the cohort.
+3.  **Compare** where you fall relative to other FRI Semester 3 peer mentors.
+4.  **Reflect** using the two prompts at the end of each chapter.
+
+::: callout-note
+## There are no right or wrong scores
+
+These measures capture orientations and styles, not ability. The purpose is
+self-awareness.
+:::
+
+## What is coming later {.unnumbered}
+
+The survey you completed included the full **Mentoring Competency Assessment**
+(Fleming et al., 2013) as a baseline. You will take it again at the end of the
+semester, so unlike the other measures in this guide, that one is designed to
+show **change over time** rather than a single snapshot. Chapter 4 uses your
+baseline answers to place you in a mentoring-style quadrant.
+
+The first mindset chapter, **4. Mentoring Style**, begins the weekly measures.

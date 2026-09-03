@@ -1,0 +1,90 @@
+# 9. Leadership Role {.unnumbered}
+
+```{r}
+#| include: false
+source("_setup.R")
+```
+
+*What is my leadership role?*
+
+## The Mindset(s) {.unnumbered}
+
+Leading a team is not one job but many. Morgeson, DeRue & Karam (2010) describe team
+leadership as a set of distinct **functions** a leader can take on. This week you decide which
+of ten functions you see as **your role** as a peer mentor. They fall into two groups:
+
+- **Task leadership**: getting the work done: planning, tracking, and training.
+  - *Survey item:* "As a peer mentor, it is my role to help them plan."
+- **Relational leadership**: supporting the people: monitoring, motivating, developing, and
+  holding the team together.
+  - *Survey item:* "As a peer mentor, it is my role to motivate the team to excel."
+
+**Polarity:** Task ↔ Relational leadership.
+
+**Measure:** Mentoring Leadership Functions inventory, adapted from Morgeson et al. (2010),
+Table 2. The stem is *"As a peer mentor, it is my role to…"* and you rate each of ten
+functions 1–10. You have a **budget of 50 points** to spread across the ten, so you have to
+prioritize which functions are most central to your role. Your **Task** and **Relational**
+scores are the total points you place on each group's functions (out of 50).
+
+- **Task functions:** help them plan · keep track of assignment due dates · train the team on
+  specific research skills · provide feedback to teammates · evaluate the performance of the team
+- **Relational functions:** monitor the group chat for help · motivate the team to excel ·
+  encourage team members to self-manage · resolve team conflict · build friendships
+
+## Find Your Score {.unnumbered}
+
+Use your password to find your score(s).
+
+```{r}
+#| label: ch09-leadership-role-compute
+#| include: false
+# Task1-5 / Relational1-5 per the Semester 3 instrument labelling. Note that
+# "evaluate the performance of the team" (LEADROLE_8) is Task5 here; it counted as
+# a relational function in an earlier version of this instrument, so scores from an
+# earlier administration are not comparable.
+w6 <- dat |> transmute(Password = PASSWORD,
+  Task       = LEADROLE_1 + LEADROLE_4 + LEADROLE_6 + LEADROLE_7 + LEADROLE_8,
+  Relational = LEADROLE_5 + LEADROLE_9 + LEADROLE_10 + LEADROLE_11 + LEADROLE_12)
+```
+
+```{r}
+#| label: ch09-leadership-role-table
+#| echo: false
+score_table(w6$Password, list(Task=w6$Task, Relational=w6$Relational),
+  "9. Leadership Role: your point totals (out of 50)")
+```
+
+## Locate Your Score {.unnumbered}
+
+Locate your score(s) relative to other peer mentors!
+
+```{r}
+#| label: ch09-leadership-role-plot
+#| echo: false
+#| fig-width: 9
+#| fig-height: 3.8
+norm_facets(list(Task=w6$Task, Relational=w6$Relational),
+  xlab="Points (out of 50)", scale = c(0, 50), by = 10)
+```
+
+::: {.callout-important}
+## About this measure
+The ten functions are drawn from Morgeson, DeRue & Karam's (2010) functional model of team
+leadership, but the mentoring-specific wording, the importance framing, and the 50-point
+budget are **adapted for this course**. Because the points are a fixed budget, spending more
+on one group of functions necessarily means spending less on the other, and the two totals
+always sum to exactly 50. Task and Relational cover five functions each, so the two scores are
+directly comparable — but still read each one against the cohort distribution above rather than
+against the scale. Because the two are complements, their percentiles always look like
+opposites: a high Task percentile forces a low Relational one. Re-check reliability before
+reporting results beyond this guide.
+:::
+
+## Reflect and Plan
+
+::: {.callout-warning}
+## Journal
+- **Score:** How does reflecting on your score help you think about who you are as a mentor?
+- **Behavior:** To be the best mentor you can be, what is one new thing you will try to do this week for mentees and/or your team?
+:::

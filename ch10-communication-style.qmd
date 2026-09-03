@@ -1,0 +1,102 @@
+# 10. Communication Style {.unnumbered}
+
+```{r}
+#| include: false
+source("_setup.R")
+```
+
+*What is my communication style?*
+
+## The Mindset(s) {.unnumbered}
+
+Nonviolent Communication describes three behaviors that keep a hard conversation connected
+rather than combative.
+
+- [**Self-connection**]{style="color:#007F85;"}: recognizing that your emotions come from
+  your own thoughts and unmet needs, and staying present enough under stress to notice a
+  reaction without acting on it.
+  - *Survey item:* "Knowing that my emotions stem from my own thoughts and unmet needs, my emotions are not caused by others."
+- [**Authentic self-expression**]{style="color:#5A71A8;"}: stating your feelings, needs, and
+  requests sincerely, without accusation, and staying open to any response.
+  - *Survey item:* "Being responsible for my own experience, and willing to express my feelings and needs sincerely without accusation or criticism."
+- [**Empathic listening**]{style="color:#C0522A;"}: staying open and flexible, and using
+  conflict to connect rather than to win.
+  - *Survey item:* "Listen patiently, try to understand other people from their perspective."
+
+**Polarity:** Violent ↔ Nonviolent.
+
+**Measure:** Nonviolent Communication Behaviors Scale (Cheung et al., 2022). Seven items
+rated 1 = Never to 4 = Frequently.
+
+## Find Your Score {.unnumbered}
+
+Use your password to find your score(s).
+
+```{r}
+#| label: ch10-communication-style-compute
+#| include: false
+comm <- dat |> transmute(Password = PASSWORD,
+  `Self-connection`           = rowMeans(across(c(Self_Connect1, Self_Connect2))),
+  `Authentic self-expression` = rowMeans(across(c(Self_Express1, Self_Express2))),
+  `Empathic listening`        = rowMeans(across(c(Empath_Listen1, Empath_Listen2, Empath_Listen3))))
+```
+
+```{r}
+#| label: ch10-communication-style-table
+#| echo: false
+score_table(comm$Password, list(`Self-connection`=comm$`Self-connection`,
+  `Authentic self-expression`=comm$`Authentic self-expression`,
+  `Empathic listening`=comm$`Empathic listening`),
+  "10. Communication Style: your NVCBS composites (1–4)")
+```
+
+## Locate Your Score {.unnumbered}
+
+Locate your score(s) relative to other peer mentors!
+
+```{r}
+#| label: ch10-communication-style-plot
+#| echo: false
+#| fig-width: 9
+#| fig-height: 3.8
+norm_facets(list(`Self-connection`=comm$`Self-connection`,
+  `Authentic self-expression`=comm$`Authentic self-expression`,
+  `Empathic listening`=comm$`Empathic listening`), xlab="Frequency",
+  scale = c(1, 4), labels = c("1\nNever","2\nRarely","3\nSometimes","4\nFrequently"))
+```
+
+## The Three Dimensions Together {.unnumbered}
+
+Nonviolent communication is not one scale but three habits working together. This plot places
+each peer mentor in the space defined by all three at once. **Drag to rotate** it and see how
+self-connection, authentic self-expression, and empathic listening relate; hover a point to see
+its password.
+
+```{r}
+#| label: ch10-communication-style-3d
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-height: 6
+suppressPackageStartupMessages(library(plotly))
+set.seed(1)
+jit <- function(x) x + runif(length(x), -0.05, 0.05)
+comm3d <- comm |> transmute(Password,
+  x = jit(`Self-connection`), y = jit(`Authentic self-expression`), z = jit(`Empathic listening`))
+plot_ly(comm3d, x = ~x, y = ~y, z = ~z, text = ~Password,
+  hovertemplate = "%{text}<extra></extra>",
+  type = "scatter3d", mode = "markers",
+  marker = list(size = 4, color = green, opacity = 0.85)) |>
+  layout(scene = list(
+    xaxis = list(title = "Self-connection (1-4)", range = c(1, 4)),
+    yaxis = list(title = "Authentic self-expression (1-4)", range = c(1, 4)),
+    zaxis = list(title = "Empathic listening (1-4)", range = c(1, 4))))
+```
+
+## Reflect and Plan
+
+::: {.callout-warning}
+## Journal
+- **Score:** How does reflecting on your score help you think about who you are as a mentor?
+- **Behavior:** To be the best mentor you can be, what is one new thing you will try to do this week for mentees and/or your team?
+:::
