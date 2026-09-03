@@ -40,19 +40,19 @@ score is not "how much" of each you value in absolute terms, but **which way you
 Use your password to find your score(s).
 
 ::: {.callout-note}
-## Two different questions, two different answers
-Your **Preference** compares you to the **midpoint of the budget**: 20/20 is an even split, and
-you are called Support- or Structure-leaning only once you are more than two points off it.
+## How your Preference is decided
+Your **Preference** comes from comparing your two **percentiles**, not your raw point totals.
+If your Support percentile sits more than 20 points above your Structure percentile you are
+**Support-leaning**; more than 20 points below, **Structure-leaning**; within 20 points of each
+other, **Balanced**.
 
-Your **percentile** compares you to **the rest of the cohort**. Those can disagree, and it is
-not an error. Support points of 21 and Structure points of 19 is nearly an even split, so the
-Preference is *Balanced* — but the cohort's median sits at 23 points of support, so 21 still
-lands in the lower third of your peers. You are balanced in absolute terms and slightly
-structure-heavy relative to this group.
+Raw points would be misleading. Almost everyone in this cohort spends more than half the
+40-point budget on support, so judging against an even 20/20 split would call nearly everyone
+support-leaning — a fact about the items, not about you. Comparing percentiles asks the more
+useful question: which way you lean **relative to your peers**.
 
-The two percentiles will always look like opposites — Structure is 40 minus Support, so a high
-Support percentile forces a low Structure one. That mirroring is arithmetic, not a finding
-about you.
+The two percentiles will always look like opposites, because Structure is 40 minus Support.
+That mirroring is arithmetic, not a finding about you.
 :::
 
 ```{r}
@@ -61,11 +61,20 @@ about you.
 w1 <- dat |> transmute(Password = PASSWORD,
   Support   = MENTORSTYLE_1 + MENTORSTYLE_2 + MENTORSTYLE_3 + MENTORSTYLE_4,
   Structure = MENTORSTYLE_5 + MENTORSTYLE_6 + MENTORSTYLE_7 + MENTORSTYLE_8)
-# leaning relative to a balanced 20/20 split of the 40 points
+
+# Preference compares the two PERCENTILES, not the raw point totals.
+# Raw points are misleading here: nearly everyone spends more than half the budget
+# on support, so a raw-point rule labels most of the cohort "Support-leaning" and
+# says more about the items than about the mentor. Percentiles ask the useful
+# question instead - which way you lean relative to your peers.
+# Rounded to the same values printed in the table, so the label always agrees with
+# the percentages shown beside it.
+pct_sup <- round(dplyr::percent_rank(w1$Support)   * 100)
+pct_str <- round(dplyr::percent_rank(w1$Structure) * 100)
 pref1 <- factor(dplyr::case_when(
-  w1$Support - w1$Structure >  2 ~ "Support-leaning",
-  w1$Support - w1$Structure < -2 ~ "Structure-leaning",
-  TRUE                           ~ "Balanced"),
+  pct_sup - pct_str >  20 ~ "Support-leaning",
+  pct_sup - pct_str < -20 ~ "Structure-leaning",
+  TRUE                    ~ "Balanced"),
   levels = c("Structure-leaning", "Balanced", "Support-leaning"))
 ```
 

@@ -32,6 +32,18 @@ rated 1 = Never to 4 = Frequently.
 
 Use your password to find your score(s).
 
+::: {.callout-note}
+## What "Strength" means here
+Your **Strength** is whichever of the three behaviors sits **highest against your cohort** —
+your best percentile of the three, not your highest raw score. The three subscales are built
+from different numbers of items and spread differently, so comparing raw means across them
+would mostly describe the scales rather than you.
+
+It is a *relative* strength, so everyone has one. It does not say you are strong on that
+behavior and weak on the others, and it does not say the other two need fixing. Read it as the
+place you already have something to build from.
+:::
+
 ```{r}
 #| label: ch10-communication-style-compute
 #| include: false
@@ -39,6 +51,15 @@ comm <- dat |> transmute(Password = PASSWORD,
   `Self-connection`           = rowMeans(across(c(Self_Connect1, Self_Connect2))),
   `Authentic self-expression` = rowMeans(across(c(Self_Express1, Self_Express2))),
   `Empathic listening`        = rowMeans(across(c(Empath_Listen1, Empath_Listen2, Empath_Listen3))))
+
+# Strength = whichever of the three sits highest against the cohort. Percentiles, not
+# raw means: the three subscales have different item counts and different spreads, so
+# comparing raw scores across them would mostly reflect the scales, not the mentor.
+# Rounded to the values printed in the table so the label agrees with them. Ties are
+# joined rather than broken - one mentor in this cohort ties on two.
+pc_comm <- sapply(comm[, -1], function(x) round(dplyr::percent_rank(x) * 100))
+strength <- apply(pc_comm, 1, function(r)
+  paste(colnames(pc_comm)[r == max(r)], collapse = " & "))
 ```
 
 ```{r}
@@ -47,7 +68,8 @@ comm <- dat |> transmute(Password = PASSWORD,
 score_table(comm$Password, list(`Self-connection`=comm$`Self-connection`,
   `Authentic self-expression`=comm$`Authentic self-expression`,
   `Empathic listening`=comm$`Empathic listening`),
-  "10. Communication Style: your NVCBS composites (1–4)")
+  "10. Communication Style: your NVCBS composites (1–4)",
+  extra = list(Strength = strength))
 ```
 
 ## Locate Your Score {.unnumbered}

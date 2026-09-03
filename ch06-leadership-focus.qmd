@@ -29,12 +29,37 @@ theory). Six items rated 1–7, three per subscale.
 
 Use your password to find your score(s).
 
+::: {.callout-note}
+## How your Preference is decided
+Your **Preference** comes from comparing your two **percentiles**. If your Promotion percentile
+sits more than 20 points above your Prevention percentile you are **Promotion-leaning**; more
+than 20 points below, **Prevention-leaning**; within 20 points of each other, **Balanced**.
+
+Unlike the point budget in Chapter 4, these two scales are **independent** — you are not
+trading one off against the other, and you can be high or low on both. So *Balanced* here does
+not mean lukewarm. It means you bring both framings to your team at a similar strength relative
+to your peers, which is often the more useful place to lead from.
+:::
+
 ```{r}
 #| label: ch06-leadership-focus-compute
 #| include: false
 w3 <- dat |> transmute(Password = PASSWORD,
   `Promotion Leadership`  = rowMeans(across(c(Lead_Promo1, Lead_Promo2, Lead_Promo3))),
   `Prevention Leadership` = rowMeans(across(c(Lead_Prev1, Lead_Prev2, Lead_Prev3))))
+
+# Preference compares the two PERCENTILES, using the same +/-20 rule as Chapter 4.
+# Unlike the Chapter 4 budget, these two scales are independent (they do not share a
+# fixed pool), so a mentor can be high or low on both - which is why the middle band
+# here is wide: holding both focuses about equally is a real result, not a fudge.
+# Rounded to the values printed in the table so the label always agrees with them.
+pct_promo <- round(dplyr::percent_rank(w3$`Promotion Leadership`)  * 100)
+pct_prev  <- round(dplyr::percent_rank(w3$`Prevention Leadership`) * 100)
+pref3 <- factor(dplyr::case_when(
+  pct_promo - pct_prev >  20 ~ "Promotion-leaning",
+  pct_promo - pct_prev < -20 ~ "Prevention-leaning",
+  TRUE                       ~ "Balanced"),
+  levels = c("Prevention-leaning", "Balanced", "Promotion-leaning"))
 ```
 
 ```{r}
@@ -42,7 +67,8 @@ w3 <- dat |> transmute(Password = PASSWORD,
 #| echo: false
 score_table(w3$Password, list(`Promotion Leadership`=w3$`Promotion Leadership`,
   `Prevention Leadership`=w3$`Prevention Leadership`),
-  "6. Leadership Focus: your composite scores (1–7)")
+  "6. Leadership Focus: your composite scores (1–7)",
+  extra = list(Preference = pref3))
 ```
 
 ## Locate Your Score {.unnumbered}

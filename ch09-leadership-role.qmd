@@ -36,6 +36,18 @@ scores are the total points you place on each group's functions (out of 50).
 
 Use your password to find your score(s).
 
+::: {.callout-note}
+## How your Preference is decided
+Your **Preference** comes from comparing your two **percentiles**. If your Task percentile sits
+more than 20 points above your Relational percentile you are **Task-leaning**; more than 20
+points below, **Relational-leaning**; within 20 points of each other, **Balanced**.
+
+The percentiles are used rather than the raw point totals because the 50 points are a fixed
+budget: judging against an even 25/25 split would say more about how the ten functions are
+worded than about how you see your role. Comparing percentiles asks which way you lean
+**relative to your peers**.
+:::
+
 ```{r}
 #| label: ch09-leadership-role-compute
 #| include: false
@@ -46,13 +58,26 @@ Use your password to find your score(s).
 w6 <- dat |> transmute(Password = PASSWORD,
   Task       = LEADROLE_1 + LEADROLE_4 + LEADROLE_6 + LEADROLE_7 + LEADROLE_8,
   Relational = LEADROLE_5 + LEADROLE_9 + LEADROLE_10 + LEADROLE_11 + LEADROLE_12)
+
+# Preference compares the two PERCENTILES, using the same +/-20 rule as Chapters 4 and 6.
+# Like Chapter 4 this is a fixed budget, so the two percentiles mirror each other and
+# the comparison amounts to which side of the cohort you sit on. Rounded to the values
+# printed in the table so the label always agrees with them.
+pct_task <- round(dplyr::percent_rank(w6$Task)       * 100)
+pct_rel  <- round(dplyr::percent_rank(w6$Relational) * 100)
+pref6 <- factor(dplyr::case_when(
+  pct_task - pct_rel >  20 ~ "Task-leaning",
+  pct_task - pct_rel < -20 ~ "Relational-leaning",
+  TRUE                     ~ "Balanced"),
+  levels = c("Relational-leaning", "Balanced", "Task-leaning"))
 ```
 
 ```{r}
 #| label: ch09-leadership-role-table
 #| echo: false
 score_table(w6$Password, list(Task=w6$Task, Relational=w6$Relational),
-  "9. Leadership Role: your point totals (out of 50)")
+  "9. Leadership Role: your point totals (out of 50)",
+  extra = list(Preference = pref6))
 ```
 
 ## Locate Your Score {.unnumbered}
